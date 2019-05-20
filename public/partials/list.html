@@ -1,0 +1,31 @@
+
+<h1 class="text-center">{{title}}</h1>
+<br><br>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Editar</th>
+            <th class="text-center">Excluir</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center" ng-repeat="pessoa in pessoas">
+                <td>{{pessoa.nome}}</td>
+                <td>{{pessoa.email}}</td>
+                <td>
+                  <a class="btn btn-xs btn-default" ng-href="#!/pessoa/form/{{pessoa._id}}">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                  </a>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-xs btn-danger" ng-click="remove(pessoa._id, $index);" >
+                    <i class="glyphicon glyphicon-remove"></i>
+                  </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

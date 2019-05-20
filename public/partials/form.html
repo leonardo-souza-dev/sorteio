@@ -1,0 +1,29 @@
+<h1 class="text-center">{{title}}</h1>
+<br>
+<br>
+<br>
+<div class="row">
+    <form novalidate class="col-lg-4 col-md-offset-4" name="pessoas" ng-submit="save();">
+        <div class="form-group">
+          <label for="pessoa">Pessoa</label>
+          <input id="pessoa" class="form-control" type="text" required placeholder="nome" ng-model="pessoa.nome">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" class="form-control input-small" type="text" required placeholder="email" ng-model="pessoa.email" 
+          min="1" step="1" max="999">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%" >Save</button>
+    </form>
+</div>
+
+<br><br>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="alert" ng-class="{'alert-success': isSave, 'alert-danger': isError}" ng-show="triedSubmit">
+      <button type="button" data-dismiss="alert" class="close">&times;</button>
+      <p class="text-center"><strong>MESSAGE</strong><br>{{message}}</p>
+    </div>
+  </div>
+</div>
