@@ -19,10 +19,12 @@ module.exports = function(app) {
     },
 
     getAllPessoas: function(req, res) {
-      pessoa.find({ativo:true}, function(err, doc) {
-        console.log(doc);
-        console.log(err);
-        if(err) throw err;
+      pessoa.find({ativo: true}, function(err, doc) {
+        //console.log(doc);
+        //console.log(err);
+        if(err) 
+          throw err;
+
         res.json(doc);
       });
     },
@@ -43,15 +45,22 @@ module.exports = function(app) {
 
           pessoa.update({_id: idDoc}, doc, function(err, res) {
         if(err) throw err;
-        console.log('PESSOA ATUALIZADA COM SUCESSO!\n', res)
+        console.log('PESSOA ATUALIZADA COM SUCESSO!xxxxxxxxxxxxxxxxxxxxxxxxxxx\n', res)
       });
     },
 
     removeLogicalPessoa: function(req, res) {
-      var _id = req.body.pessoa;
+      
+      console.log('req.params.id');
+      console.log(req.params.id);
+      
+      var _id = req.params.id;
       pessoa.removeLogical(_id, function(err, res) {
-        if(err) throw err;
-        console.log('PESSOA REMOVIDA COM SUCESSO!\n', res);
+        if(err) {
+          debugger;
+          throw err;
+        }
+        console.log('PESSOA REMOVIDA COM SUCESSO!!!!\n', res);
       });
     },
 

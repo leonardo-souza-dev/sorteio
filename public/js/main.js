@@ -3,11 +3,15 @@ var app = angular.module('main', ['ngRoute', 'ngResource']);
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: '../partials/form.html',
-        controller: 'savePessoa'
+        controller: 'savePessoaController'
     })
-    .when('/pessoa/listar', {
+    .when('/pessoa/listar5049165418', {
         templateUrl: '../partials/list.html',
-        controller: 'listController'
+        controller: 'listarPessoaController'
+    })
+    .when('/pessoa/listareditar9518457532', {
+        templateUrl: '../partials/list-edit.html',
+        controller: 'listarPessoaController'
     })
     .otherwise({redirectTo: '/'});
 }]);

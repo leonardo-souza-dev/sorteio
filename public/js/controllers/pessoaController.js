@@ -1,7 +1,25 @@
 var app = angular.module('main');
 
-app.controller('listController', function($scope, $location, pessoaService) {
-	$scope.title = 'Lista de Pessoas';
+app.controller('listarPessoaController', function($scope, $location, pessoaService) {
+  $scope.title = 'Lista de Pessoas';
+
+  $scope.selectedAll = false;
+
+  $scope.selectAll = function() {
+    $scope.selectedAll = !$scope.selectedAll;
+    angular.forEach($scope.pessoas, function(item) {
+      item.selected = $scope.selectedAll;
+    });
+  };
+
+  // use the array "every" function to test if ALL items are checked
+  $scope.checkIfAllSelected = function(pessoa) {
+    pessoa.selected = !pessoa.selected;
+    $scope.selectedAll = $scope.pessoas.every(function(item) {
+      return item.selected == true;
+    })
+  };
+  
 	pessoaService.get({}, function(pessoas) {
     $scope.pessoas = pessoas;
   });
@@ -11,20 +29,26 @@ app.controller('listController', function($scope, $location, pessoaService) {
     $scope.pessoas.splice(index, 1);
   };
 
+  $scope.deletar = function(){
+    angular.forEach($scope.pessoas, function(value, key) {
+      if (value.selected) {
+        pessoaService.remove(value._id);
+        $scope.pessoas.splice(key, 1);
+      }      
+    });
+  };
 });
 
-app.controller('sorteiaPessoa', function($scope, $routeParams, $resource, $location, pessoaService) {
+app.controller('sorteiaPessoaController', function($scope, $routeParams, $resource, $location, pessoaService) {
   $scope.realizaSorteio = function(){
-    debugger;
     pessoaService.sorteia({}, function(pessoas) {
-      debugger;
       $scope.pessoaSorteada = { nome:"Leonardo", email: "leo@mgail.com"} 
       //$scope.pessoas = pessoas;
     }); 
   };
 });
 
-app.controller('savePessoa', function($scope, pessoaService) {
+app.controller('savePessoaController', function($scope, pessoaService) {
     $scope.title = 'Cadastro de pessoas';
 		var pessoaCadastro = pessoaService.save();
 
@@ -45,22 +69,18 @@ app.controller('savePessoa', function($scope, pessoaService) {
     };
 });
 
-app.controller('editPessoa', function($scope, $routeParams,  $resource, pessoaService) {
+app.controller('editarPessoaController', function($scope, $routeParams,  $resource, pessoaService) {
   $scope.title = 'Atualizar pessoas';
   var PessoaResource = $resource('/pessoa/busca/:id');
   PessoaResource.get({id: $routeParams.id}, function(res) {
-    //res.preco = res.preco.toString().replace('.', ',');
     $scope.pessoa = res;
   });
-
-
   pessoaResource = pessoaService.set();
   $scope.save = function() {
     $scope.triedSubmit = true;
     if($scope.pessoa.nome && $scope.pessoa.email){
       pessoaResource.pessoa = $scope.pessoa;
       pessoaResource.$save();
-
       $scope.isSave = true;
       $scope.message = $scope.pessoa.nome + ' atualizada com sucesso.';
     }else{
@@ -68,8 +88,12 @@ app.controller('editPessoa', function($scope, $routeParams,  $resource, pessoaSe
       $scope.message = 'Erro ao fazer atualização da ' + $scope.pessoa.nome;
     }
   };
+
+  $scope.removerPessoas = function(){
+
+  };
 });
 
-app.controller('removePessoa', function($scope, $routeParams, $resource, $location) {
+app.controller('removerPessoaController', function($scope, $routeParams, $resource, $location) {
 
 });

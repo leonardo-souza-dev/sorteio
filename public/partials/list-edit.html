@@ -1,0 +1,17 @@
+
+<h1 class="text-center">{{title}}</h1>
+<br><br>
+<div class="container">
+  <strong>Total de inscritos: {{pessoas.length}}</strong>
+  <br><br>
+  
+  <button type="submit" class="btn btn-primary text-center" style="background-color:#052317;width: 100%" ng-click="deletar();" >Deletar</button>
+  <br><br>
+  
+  <input type="checkbox" ng-model="selectedAll" ng-click="selectAll()" /> Selecionar todos
+  <br><br>
+
+  <p  ng-repeat="pessoa in pessoas">
+    <input type="checkbox" ng-model="pessoa.selected" ng-click="checkIfAllSelected(pessoa)" />{{pessoa.nome}} - {{pessoa.email}}
+  </p>
+</div>

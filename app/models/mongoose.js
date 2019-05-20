@@ -43,10 +43,16 @@ module.exports = function(Model) {
     },
 
     removeLogical: function(_id, callback) {
+      
+      console.log('_id - REMOVE LOGICAL');
+      console.log(_id);
+
       Model.update({_id: _id}, {$set: {ativo: false}})
         .then(function(res) {
+          console.log('callback de SUCESSO do update do mongoose');
           callback(undefined, res);
         }, function(err) {
+          console.log('callback de ERRO do update do mongoose');
           callback(new Error('Erro ao remover logicamente o documento:\n', err));
         });
     }

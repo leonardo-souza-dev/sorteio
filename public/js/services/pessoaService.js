@@ -1,4 +1,4 @@
-angular.module('main').factory('pessoaService', function($resource) {
+angular.module('main').factory('pessoaService', function($resource, $routeParams) {
 
   function _save() {
     var PessoaResource = $resource('/pessoa/cadastro');
@@ -23,10 +23,23 @@ angular.module('main').factory('pessoaService', function($resource) {
     return callback(res);
   };
 
+  function _remove(_id) {
+    debugger;
+    var PessoaResource = $resource('/pessoa/removeLogico/:id');
+    // var pessoaResource = new PessoaResource();
+    // pessoaResource._id = _id;
+    // pessoaResource.$remove();
+
+    PessoaResource.delete({id:_id}, function(res){
+      var asdasd = 2;
+    });
+  };
+
   return {
     save: _save,
     set: _set,
     get: _get,
+    remove: _remove,
     sorteia: _sorteia
   };
 });

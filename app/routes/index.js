@@ -6,4 +6,5 @@ module.exports = function(app) {
   app.get('/pessoa/busca/:id', controller.getOnePessoa);
   app.post('/pessoa/edita', controller.postUpdatePessoa);
   app.get('/pessoa/sorteia', controller.sorteiaPessoa);
+  app.delete('/pessoa/removeLogico/:id', controller.removeLogicalPessoa);
 };
