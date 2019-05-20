@@ -1,5 +1,7 @@
 var app = require('./config/express.js');
 
-app.listen(app.get('port'), function() {
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, function() {
     console.log('server on | port: ' + app.get('port'));
 });
