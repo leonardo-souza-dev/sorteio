@@ -17,13 +17,6 @@ angular.module('main').factory('pessoaService', function($resource) {
     return callback(res);
   };
 
-  function _remove(_id) {
-    var PessoaResource = $resource('/pessoa/removeLogico'),
-    pessoaResource = new PessoaResource();
-    pessoaResource.pessoa = _id;
-    pessoaResource.$remove();
-  };
-
   function _sorteia() {
     var PessoaResource = $resource('/pessoa/sorteia');
     var res = PessoaResource.query();
@@ -34,7 +27,6 @@ angular.module('main').factory('pessoaService', function($resource) {
     save: _save,
     set: _set,
     get: _get,
-    remove: _remove,
     sorteia: _sorteia
   };
 });
