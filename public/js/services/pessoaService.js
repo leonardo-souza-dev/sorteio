@@ -24,10 +24,17 @@ angular.module('main').factory('pessoaService', function($resource) {
     pessoaResource.$remove();
   };
 
+  function _sorteia() {
+    var PessoaResource = $resource('/pessoa/sorteia');
+    var res = PessoaResource.query();
+    return callback(res);
+  };
+
   return {
     save: _save,
     set: _set,
     get: _get,
-    remove: _remove
+    remove: _remove,
+    sorteia: _sorteia
   };
 });

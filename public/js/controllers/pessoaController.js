@@ -13,6 +13,17 @@ app.controller('listController', function($scope, $location, pessoaService) {
 
 });
 
+app.controller('sorteiaPessoa', function($scope, $routeParams, $resource, $location, pessoaService) {
+  $scope.realizaSorteio = function(){
+    debugger;
+    pessoaService.sorteia({}, function(pessoas) {
+      debugger;
+      $scope.pessoaSorteada = { nome:"Leonardo", email: "leo@mgail.com"} 
+      //$scope.pessoas = pessoas;
+    }); 
+  };
+});
+
 app.controller('savePessoa', function($scope, pessoaService) {
     $scope.title = 'Cadastro de pessoas';
 		var pessoaCadastro = pessoaService.save();

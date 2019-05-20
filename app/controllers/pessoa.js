@@ -53,7 +53,18 @@ module.exports = function(app) {
         if(err) throw err;
         console.log('PESSOA REMOVIDA COM SUCESSO!\n', res);
       });
+    },
+
+    sorteiaPessoa: function(req, res) {
+      debugger;
+      pessoa.find({ativo:true}, function(err, doc) {
+
+        if(err) throw err;
+        res.json(doc[0]);
+      });
     }
+
+
   };
 
     return HomeController;

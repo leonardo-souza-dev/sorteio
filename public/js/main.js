@@ -17,6 +17,10 @@ app.config(['$routeProvider', function($routeProvider) {
         templateUrl: '../partials/list.html',
         controller: 'removePessoa'
     })
+    .when('/pessoa/sorteia', {
+        templateUrl: '../partials/sorteio.html',
+        controller: 'sorteiaPessoa'
+    })
     .otherwise({redirectTo: '/'});
 }]);
 
