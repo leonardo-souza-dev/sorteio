@@ -30,12 +30,19 @@ app.controller('listarPessoaController', function($scope, $location, pessoaServi
   };
 
   $scope.deletar = function(){
+    var idsDelete = [];
     angular.forEach($scope.pessoas, function(value, key) {
       if (value.selected) {
-        pessoaService.remove(value._id);
-        $scope.pessoas.splice(key, 1);
-      }      
+        idsDelete.push({id:value._id, key: key});
+      }
     });
+    var spliceIndex = 0;
+    idsDelete = idsDelete.sort(function (a, b) {  return a.key - b.key;  });
+    angular.forEach(idsDelete, function(v,k){
+      pessoaService.remove(v.id);
+      $scope.pessoas.splice(v.key - spliceIndex, 1);
+      spliceIndex++;
+    })
   };
 });
 

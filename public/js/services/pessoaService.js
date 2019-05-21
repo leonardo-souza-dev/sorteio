@@ -24,7 +24,6 @@ angular.module('main').factory('pessoaService', function($resource, $routeParams
   };
 
   function _remove(_id) {
-    debugger;
     var PessoaResource = $resource('/pessoa/removeLogico/:id');
     // var pessoaResource = new PessoaResource();
     // pessoaResource._id = _id;
