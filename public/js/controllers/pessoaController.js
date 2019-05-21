@@ -50,7 +50,8 @@ app.controller('sorteiaPessoaController', function($scope, $routeParams, $resour
 
 app.controller('savePessoaController', function($scope, pessoaService) {
     $scope.title = 'Cadastro de pessoas';
-		var pessoaCadastro = pessoaService.save();
+    var pessoaCadastro = pessoaService.save();
+    $scope.saveDisable = false;
 
     $scope.save = function() {
       $scope.triedSubmit = true;
@@ -62,6 +63,7 @@ app.controller('savePessoaController', function($scope, pessoaService) {
         pessoaCadastro.$save();
   	    $scope.isSave = true;
         $scope.message = 'Cadastro efetuado';
+        $scope.saveDisable = true;
   		}else{
   			$scope.isError = true;
         $scope.message = 'Erro ao cadastrar ' + $scope.pessoa.nome;
